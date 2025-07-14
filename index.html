@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>#LfR0s3</title>
+  <script>
+
+    const phrases = [
+      "幸せな一日",
+      "楽しい一日",
+      "思い出に残る一日",
+      "リラックスする一日"
+    ];
+
+      const pages = [
+        "LfR0s3_rd.html",
+        "LfR0s3_yl.html",
+        "LfR0s3_or.html",
+        "LfR0s3_gr.html",
+        "LfR0s3_bl.html",
+        "LfR0s3_pn.html",
+        "LfR0s3_vl.html"
+  ];
+  const today = new Date().toISOString().split("T")[0];
+  const savedData = JSON.parse(localStorage.getItem("dailyFortune"));
+
+  let selectedPage, selectedPhrase;
+
+  if(savedData && savedData.date === today){
+
+    selectedPage = savedData.page;
+    selectedPhrase = savedData.phrase;
+  }else{
+    selectedPage = pages[Math.floor(Math.random() * pages.length)];
+    selectedPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+    localStorage.setItem("dailyFortune", JSON.stringify({
+      date: today,
+      page: selectedPage,
+      phrase: selectedPhrase
+    }));
+  }
+
+      window.location.href = selectedPage;
+  </script>
+</head>
+<body>
+</body>
+</html>
